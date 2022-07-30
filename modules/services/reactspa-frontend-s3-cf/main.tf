@@ -92,7 +92,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   origin {
     domain_name = "${var.bucket_name}-${var.env}.s3.amazonaws.com"
-    origin_id   = "${var.bucket_name}-${var.env}.s3.amazonaws.com"
+    origin_id   = "s3-cloudfront"
 
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path
@@ -101,7 +101,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   enabled             = true
   is_ipv6_enabled     = true
-  default_root_object = ""
+  default_root_object = "index.html"
 
   aliases = local.domain_name
 
@@ -116,7 +116,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
       "HEAD",
     ]
 
-    target_origin_id = "${var.bucket_name}-${var.env}.s3.amazonaws.com"
+    target_origin_id = "s3-cloudfront"
 
     forwarded_values {
       query_string = false
