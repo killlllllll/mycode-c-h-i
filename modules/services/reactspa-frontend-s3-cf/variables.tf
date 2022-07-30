@@ -20,7 +20,7 @@ variable "acm_certificate_domain" {
 }
 
 variable "price_class" {
-  default     = "PriceClass_All" 
+  default     = "PriceClass_100" // Only US,Canada,Europe
   description = "CloudFront distribution price class"
 }
 
@@ -37,7 +37,7 @@ variable "upload_sample_file" {
 # All values for the TTL are important when uploading static content that changes
 # https://stackoverflow.com/questions/67845341/cloudfront-s3-etag-possible-for-cloudfront-to-send-updated-s3-object-before-t
 variable "cloudfront_min_ttl" {
-  default     =  10
+  default     = 0
   description = "The minimum TTL for the cloudfront cache"
 }
 
@@ -111,7 +111,7 @@ variable "ssl_supportmethod" {
 }
 
 variable "minimum_protocol" {
-  default  = "TLSv1.2_2021"
+  default  = "TLSv1"
 }
 
 variable "error_code" {
